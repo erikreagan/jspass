@@ -1,0 +1,17 @@
+h1. Javascript Password Protected Content Experiment
+
+After a "silly" question at Refresh Savannah I decided to see what could be done with password protecting content with javascript only. This was my 20 minute hack. (10 minutes coding, 10 minutes writing this document and putting on GitHub).
+
+h2. Process:
+
+Include a @sha1()@ function - I just chose jQuery and a sha1 plugin for playing around
+Determine a fixed password (in this case, *refresh*)
+Get the sha1 value of that string (@26b56c1bdfb048c3e46419fde332bab76deb2cd3@)
+In this case I shortened the string to 16 characters (@26b56c1bdfb048c3@)
+Create your html file based on these 16 characters (@26b56c1bdfb048c3.html@)
+Use ajax (in my lazy case - jQuery's @$.get()@) to fetch the file
+Return either an error message or the file's contents
+
+As far as I can tell you cannot detect the html file name and thus the page with content. Creative users can still observe network data and find the URL being retrieved - but no password is in the clear or reversible.
+
+Demo: http://sandbox.focuslabllc.com/jspass/
