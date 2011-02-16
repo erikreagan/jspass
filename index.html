@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Password Protected Content Experiment</title>
+	
+	<meta charset="utf-8"> 
+	
+	<style>
+		html, body { font-family: "Helvetica Neue", Helvetica; }
+		body { width: 700px; margin: 100px; }
+		body ul { text-align: left; }
+		code { font-family: Inconsolata, Menlo, Monaco, "Andale Mono" courier; background: #F6F6F6; }
+	</style>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="jquery.sha1.js"></script>
+	<script>
+	$(function(){
+		// hijack our form submission
+		$('#awesomesauce').bind('submit',function(e){
+			e.preventDefault();
+			
+			// "refresh" encrypted with sha1 is "26b56c1bdfb048c3e46419fde332bab76deb2cd3"
+			// grab the password value so we don't continually fetch it with jQuery
+			var password = $('#password').attr('value');
+			
+			// turn our password value into sha1
+			var full_sha = $.sha1(password);
+			
+			// Shorten our file to the first 16 characters of our sha1 encryption (just for fun)
+			var file = full_sha.substr(0,16);
+			
+			// Use the $.get() method to fetch our file. If it exists we'll append the returned data to our DOM
+			// If it fails then we use the .error() method to trigger our error message (a lame alert for me)
+			$.get('/jspass/'+file+'.html', function(data) {
+				$('#content').hide().html(data).fadeIn();
+			}).error(function() {
+				alert('Um...yeah...that\'s not gonna work.');
+			});
+		});
+	});
+	
+</script>
+<body>
+	
+	<h1>JS Experiment</h1>
+	
+	<p>
+		Enter the password, fool!<br/>
+		<small>Hint: it's "refresh"</small>
+	</p>
+	
+	<form id="awesomesauce" method="post">
+		<input type="text" value="" name="password" id="password">
+		<input type="submit" value="submit" name="submit">
+	</form>
+	
+	<section id="content"></section>
+	
+</body>
+</html>

@@ -1,0 +1,13 @@
+<h2>Boo-yah!</h2>
+<p>This is private, yo.</p>
+<p>So basically this is what I did:</p>
+<ul>
+	<li>Include a <code>sha1()</code> function - I just chose jQuery and a sha1 plugin for playing around</li>
+	<li>Determine a fixed password (in this case, <strong>refresh</strong>)</li>
+	<li>Get the sha1 value of that string (<code>26b56c1bdfb048c3e46419fde332bab76deb2cd3</code>)</li>
+	<li>In this case I shortened the string to 16 characters (<code>26b56c1bdfb048c3</code>)</li>
+	<li>Create your html file based on these 16 characters (<code>26b56c1bdfb048c3.html</code>)</li>
+	<li>Use ajax (in my lazy case - jQuery's <code>$.get()</code>) to fetch the file</li>
+	<li>Return either an error message or the file's contents</li>
+</ul>
+<p>As far as I can tell you cannot detect the html file name and thus the page with content. Creative users can still observe network data and find the URL being retrieved - but no password is in the clear or reversible.</p>
