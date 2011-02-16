@@ -14,4 +14,4 @@ Return either an error message or the file's contents
 
 As far as I can tell you cannot detect the html file name and thus the page with content. Creative users can still observe network data and find the URL being retrieved - but no password is in the clear or reversible.
 
-Demo: http://sandbox.focuslabllc.com/jspass/
+Demo: "http://sandbox.focuslabllc.com/jspass/":http://sandbox.focuslabllc.com/jspass/
